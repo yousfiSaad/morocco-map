@@ -1,0 +1,21 @@
+{
+  "name": "maroc-map",
+  "version": "1.0.0",
+  "description": "TopoJSON files for moroccan regions",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yousfiSaad/maroc-map.git"
+  },
+  "keywords": [
+    "topojson",
+    "morocco",
+    "map"
+  ],
+  "author": "yousfi saad",
+  "license": "ODbL-1.0",
+  "bugs": {
+    "url": "https://github.com/yousfiSaad/maroc-map/issues"
+  },
+  "homepage": "https://github.com/yousfiSaad/maroc-map#readme"
+}
