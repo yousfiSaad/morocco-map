@@ -4,12 +4,12 @@
 const projection = d3.geoMercator().scale(300)
 const pathGenerator = d3.geoPath().projection(projection);
 
-const width = 860;
+const width = 800;
 const height = 800;
 
-document.querySelector('.container').setAttribute('width', width + 10);
+document.querySelector('.container').setAttribute('width', width);
 
-const svg = d3.select('svg').attr("width", 960).attr("height", 800);
+const svg = d3.select('svg').attr("width", width).attr("height", height);
 
 // svg.append('path')
 //   .attr('class', 'sphere')
