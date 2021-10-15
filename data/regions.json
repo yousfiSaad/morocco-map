@@ -14,6 +14,7 @@
           "id": "MA-01",
           "properties": {
             "name:en": "Tanger-Tétouan-Al Hoceïma",
+            "name:ar": "طنجة تطوان الحسيمة",
             "name": "Tanger-Tétouan-Al Hoceima ⵟⴰⵏⵊ-ⵟⵉⵜⴰⵡⵉⵏ-ⵍⵃⵓⵙⵉⵎⴰ طنجة تطوان الحسيمة"
           },
           "arcs": [[[-7, -8, -9, -10, -11, -12, -13, 2]]]
@@ -23,6 +24,7 @@
           "id": "MA-02",
           "properties": {
             "name:en": "L'Oriental",
+            "name:ar": "الشرقية",
             "name": "Oriental ⵜⴰⵏⴳⵎⵓⴹⵜ الشرقية"
           },
           "arcs": [[[-14, -15, -16, 9, -17, 5]]]
@@ -32,6 +34,7 @@
           "id": "MA-08",
           "properties": {
             "name:en": "Drâa-Tafilalet",
+            "name:ar": "درعة تافيلالت",
             "name": "Drâa-Tafilalet ⴷⴰⵔⵄⴰ-ⵜⴰⴼⵉⵍⴰⵍⵜ درعة تافيلالت"
           },
           "arcs": [[17, 18, 19, 20, 14, 21]]
@@ -41,6 +44,7 @@
           "id": "MA-09",
           "properties": {
             "name:en": "Souss-Massa",
+            "name:ar": "سوس-ماسة",
             "name": "Souss-Massa ⵙⵓⵙⵙ-ⵎⴰⵙⵙⴰ سوس-ماسة"
           },
           "arcs": [[[-23, -24, -18, -25, -26]]]
@@ -50,6 +54,7 @@
           "id": "MA-10",
           "properties": {
             "name:en": "Guelmim-Oued Noun (EH-partial)",
+            "name:ar": "كلميم وادي نون",
             "name": "Guelmim-Oued Noun ⵜⴰⵙⴳⴰ-ⵡⴰⴷ ⵏⵓⵏ كلميم وادي نون"
           },
           "arcs": [[-27, -28, 25, -29]]
@@ -59,6 +64,7 @@
           "id": "MA-06",
           "properties": {
             "name:en": "Casablanca-Settat",
+            "name:ar": "الدار البيضاء-سطات",
             "name": "Casablanca-Settat ⵜⵉⴳⵎⵉ ⵜⵓⵎⵍⵉⵍⵜ-ⵙⵟⵟⴰⵜ الدار البيضاء-سطات"
           },
           "arcs": [[[-30]], [[-31]], [[-32, -33, -34, -35]]]
@@ -68,6 +74,7 @@
           "id": "MA-07",
           "properties": {
             "name:en": "Marrakech-Safi",
+            "name:ar": "مراكش-أسفي",
             "name": "Marrakech-Safi ⵎⵕⵕⴰⴽⵛ-ⴰⵙⴼⵉ مراكش-أسفي"
           },
           "arcs": [[[-36]], [[-37]], [[-38, 34, -39, -19, 23]]]
@@ -77,6 +84,7 @@
           "id": "MA-11",
           "properties": {
             "name:en": "Laâyoune-Sakia El Hamra (EH-partial)",
+            "name:ar": "العيون الساقية الحمراء",
             "name": "Laâyoune-Sakia El Hamra ⵍⵄⵢⵓⵏ-ⵙⴰⵇⵢⴰ ⵍⵃⴰⵎⵔⴰ العيون الساقية الحمراء"
           },
           "arcs": [[39, 40, 41, 26]]
@@ -86,6 +94,7 @@
           "id": "MA-12",
           "properties": {
             "name:en": "Dakhla-Oued Ed-Dahab (EH)",
+            "name:ar": "الداخلة-وادي الذهب",
             "name": "Dakhla-Oued Ed-Dahab ⴷⴰⵅⵍⴰ-ⵡⴰⴷ ⴷⴰⵀⴰⴱ الداخلة-وادي الذهب"
           },
           "arcs": [[42, -41]]
@@ -95,6 +104,7 @@
           "id": "MA-04",
           "properties": {
             "name:en": "Rabat-Salé-Kénitra",
+            "name:ar": "الرباط-سلا-القنيطرة",
             "name": "Rabat-Salé-Kénitra ⵔⴱⴰⵟ-ⵙⵍⴰ-ⵇⵏⵉⵟⵔⴰ الرباط-سلا-القنيطرة"
           },
           "arcs": [[[-44]], [[-45]], [[-46, 11, -47, -48, 32]]]
@@ -104,6 +114,7 @@
           "id": "MA-03",
           "properties": {
             "name:en": "Fès-Meknès",
+            "name:ar": "فاس-مكناس",
             "name": "Fès-Meknès ⴼⴰⵙ-ⵎⴽⵏⴰⵙ فاس-مكناس"
           },
           "arcs": [[-21, 48, 46, 10, 15]]
@@ -113,6 +124,7 @@
           "id": "MA-05",
           "properties": {
             "name:en": "Béni Mellal-Khénifra",
+            "name:ar": "بني ملال-خنيفرة",
             "name": "Béni Mellal-Khénifra ⴰⵢⵜ ⵎⵍⵍⴰⵍ-ⵅⵏⵉⴼⵕⴰ بني ملال-خنيفرة"
           },
           "arcs": [[-49, -20, 38, 33, 47]]
