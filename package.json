@@ -2,7 +2,9 @@
   "name": "morocco-map",
   "version": "1.0.0",
   "description": "TopoJSON files for moroccan regions",
-  "scripts": {},
+  "scripts": {
+    "example": "npx http-server -c-0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yousfiSaad/morocco-map.git"
