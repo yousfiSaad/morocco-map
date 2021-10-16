@@ -11,9 +11,6 @@ document.querySelector('.container').setAttribute('width', width);
 
 const svg = d3.select('svg').attr("width", width).attr("height", height);
 
-// svg.append('path')
-//   .attr('class', 'sphere')
-//   .attr('d', pathGenerator({ type: 'Sphere' }));
 
 d3.json('../data/regions.json')
   .then(data => {
