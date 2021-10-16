@@ -1,6 +1,6 @@
 {
   "name": "morocco-map",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "TopoJSON files for moroccan regions",
   "scripts": {
     "example": "npx http-server -c-0"

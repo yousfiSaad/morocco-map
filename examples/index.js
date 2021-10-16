@@ -12,7 +12,7 @@ document.querySelector('.container').setAttribute('width', width);
 const svg = d3.select('svg').attr("width", width).attr("height", height);
 
 
-d3.json('../data/regions.json')
+d3.json('https://cdn.jsdelivr.net/npm/morocco-map/data/regions.json')
   .then(data => {
     const regions = topojson.feature(data, data.objects.regions);
 
