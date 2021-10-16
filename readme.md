@@ -12,4 +12,4 @@ You can see the example in <a href="https://github.com/yousfiSaad/morocco-map/tr
 
 <img src="img/regions.png" width="480">
 
-A TopoJSON file containing the 12 moroccan regions, the id of each region is
+A TopoJSON file containing the 12 moroccan regions, the id of each region respects the the ISO 3166 standard.
