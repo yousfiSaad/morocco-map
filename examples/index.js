@@ -1,9 +1,3 @@
-
-
-
-const projection = d3.geoMercator().scale(300)
-const pathGenerator = d3.geoPath().projection(projection);
-
 const width = 800;
 const height = 800;
 
