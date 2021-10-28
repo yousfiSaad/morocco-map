@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+
+    <style>
+      .region {
+        fill: brown;
+        opacity: 0.88;
+      }
+      .region:hover {
+        opacity: 1;
+      }
+      .osm-credits > span {
+        display: inline-block;
+      }
+      .osm-credits {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 400px;
+        color: #0078a8;
+        background-color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        text-align: end;
+      }
+      .osm-credits a {
+        color: #0078a8;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: block;
+      }
+      .container {
+        position: absolute;
+        left: 50%;
+        margin-top: 20px;
+        transform: translate(-50%, 0);
+      }
+    </style>
+
+    <title>Moroccan regions map example</title>
+  </head>
+  <body>
+    <div class="container">
+      <svg></svg>
+      <div class="osm-credits">
+        <span> © </span>
+        <span>
+          <a href="https://www.openstreetmap.org/copyright" target="blank">OpenStreetMap contributors</a>
+        </span>
+        <span> ♥ </span>
+      </div>
+    </div>
+    <script src="provinces.js"></script>
+  </body>
+</html>
