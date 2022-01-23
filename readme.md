@@ -24,5 +24,5 @@ A TopoJSON file containing the provinces and prefectures, the ids of the items a
 
 ### TODO:
 
-- [ ] Set ids in ISO 3166 standard for provinces/prefectures in provinces.json file
+- [x] Set ids in ISO 3166 standard for provinces/prefectures in provinces.json file
 - [ ] Add cities
