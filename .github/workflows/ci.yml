@@ -1,0 +1,182 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate:
+    name: Validate TopoJSON Data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate regions.json
+        run: |
+          echo "Validating regions.json..."
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('data/regions.json', 'utf8'));
+
+            // Check topology type
+            if (data.type !== 'Topology') {
+              throw new Error('Invalid TopoJSON: type must be Topology');
+            }
+
+            // Check regions object exists
+            if (!data.objects || !data.objects.regions) {
+              throw new Error('Missing regions object');
+            }
+
+            // Check geometries
+            const geometries = data.objects.regions.geometries;
+            if (!Array.isArray(geometries) || geometries.length === 0) {
+              throw new Error('No geometries found');
+            }
+
+            // Validate IDs are unique
+            const ids = geometries.map(g => g.id);
+            const uniqueIds = new Set(ids);
+            if (ids.length !== uniqueIds.size) {
+              throw new Error('Duplicate IDs found in regions');
+            }
+
+            // Check all regions have required properties
+            geometries.forEach((g, i) => {
+              if (!g.id) throw new Error(\`Geometry \${i} missing id\`);
+              if (!g.properties) throw new Error(\`Geometry \${i} missing properties\`);
+              if (!g.properties['name:en']) throw new Error(\`Geometry \${i} missing name:en\`);
+              if (!g.properties['name:ar']) throw new Error(\`Geometry \${i} missing name:ar\`);
+            });
+
+            console.log('✓ regions.json is valid');
+            console.log(\`  - Found \${geometries.length} regions\`);
+            console.log(\`  - All IDs are unique\`);
+            console.log(\`  - All required properties present\`);
+          "
+
+      - name: Validate provinces.json
+        run: |
+          echo "Validating provinces.json..."
+          node -e "
+            const fs = require('fs');
+            const data = JSON.parse(fs.readFileSync('data/provinces.json', 'utf8'));
+
+            // Check topology type
+            if (data.type !== 'Topology') {
+              throw new Error('Invalid TopoJSON: type must be Topology');
+            }
+
+            // Check provinces object exists
+            if (!data.objects || !data.objects.provinces) {
+              throw new Error('Missing provinces object');
+            }
+
+            // Check geometries
+            const geometries = data.objects.provinces.geometries;
+            if (!Array.isArray(geometries) || geometries.length === 0) {
+              throw new Error('No geometries found');
+            }
+
+            // Validate IDs are unique
+            const ids = geometries.map(g => g.id);
+            const uniqueIds = new Set(ids);
+            if (ids.length !== uniqueIds.size) {
+              throw new Error('Duplicate IDs found in provinces');
+            }
+
+            // Check all provinces have required properties
+            geometries.forEach((g, i) => {
+              if (!g.id) throw new Error(\`Geometry \${i} missing id\`);
+              if (!g.properties) throw new Error(\`Geometry \${i} missing properties\`);
+              if (!g.properties.name) throw new Error(\`Geometry \${i} missing name\`);
+            });
+
+            console.log('✓ provinces.json is valid');
+            console.log(\`  - Found \${geometries.length} provinces\`);
+            console.log(\`  - All IDs are unique\`);
+            console.log(\`  - All required properties present\`);
+          "
+
+      - name: Check file sizes
+        run: |
+          echo "Checking file sizes..."
+          ls -lh data/*.json
+
+          # Warning if files are too large (> 2MB)
+          for file in data/*.json; do
+            size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file")
+            if [ $size -gt 2097152 ]; then
+              echo "⚠️  Warning: $file is larger than 2MB ($size bytes)"
+            else
+              echo "✓ $file size is acceptable"
+            fi
+          done
+
+  lint:
+    name: Lint and Format Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for trailing whitespace
+        run: |
+          echo "Checking for trailing whitespace..."
+          if grep -r '[[:blank:]]$' --include="*.js" --include="*.html" --include="*.md" .; then
+            echo "⚠️  Found trailing whitespace in files above"
+            exit 1
+          else
+            echo "✓ No trailing whitespace found"
+          fi
+
+      - name: Validate markdown files
+        run: |
+          echo "Checking markdown files..."
+          for file in *.md; do
+            if [ -f "$file" ]; then
+              echo "✓ Found $file"
+            fi
+          done
+
+  examples:
+    name: Test Examples
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check examples syntax
+        run: |
+          echo "Validating JavaScript syntax in examples..."
+          node -c examples/index.js
+          node -c examples/provinces.js
+          echo "✓ All example JavaScript files have valid syntax"
+
+      - name: Validate HTML
+        run: |
+          echo "Checking HTML files..."
+          for file in examples/*.html; do
+            if grep -q "<!DOCTYPE html>" "$file"; then
+              echo "✓ $file has DOCTYPE"
+            else
+              echo "⚠️  $file missing DOCTYPE"
+              exit 1
+            fi
+          done

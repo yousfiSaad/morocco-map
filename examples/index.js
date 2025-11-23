@@ -1,28 +1,96 @@
-const width = 800;
-const height = 800;
+// Configuration
+const config = {
+  width: 800,
+  height: 800,
+  dataUrl: 'https://cdn.jsdelivr.net/npm/morocco-map/data/regions.json'
+};
 
-document.querySelector('.container').setAttribute('width', width);
+// Get container and tooltip elements
+const mapContainer = document.getElementById('map-container');
+const tooltip = document.querySelector('.tooltip');
 
-const svg = d3.select('svg').attr("width", width).attr("height", height);
+// Create SVG
+const svg = d3.create('svg')
+  .attr('viewBox', `0 0 ${config.width} ${config.height}`)
+  .attr('preserveAspectRatio', 'xMidYMid meet');
 
-const text = svg.append("text").attr('y', 100).attr('x', 300).attr("text-anchor", "end");
+// Tooltip functions
+function showTooltip(event, data) {
+  const properties = data.properties;
 
-d3.json('https://cdn.jsdelivr.net/npm/morocco-map/data/regions.json')
-  .then(data => {
+  tooltip.innerHTML = `
+    <div class="tooltip-name">${properties['name:en']}</div>
+    <div>${properties['name:ar']}</div>
+    <div class="tooltip-id">ID: ${data.id}</div>
+  `;
+
+  tooltip.classList.add('visible');
+
+  // Position tooltip
+  const tooltipRect = tooltip.getBoundingClientRect();
+  tooltip.style.left = `${event.pageX - tooltipRect.width / 2}px`;
+  tooltip.style.top = `${event.pageY - tooltipRect.height - 10}px`;
+}
+
+function hideTooltip() {
+  tooltip.classList.remove('visible');
+}
+
+function moveTooltip(event) {
+  const tooltipRect = tooltip.getBoundingClientRect();
+  tooltip.style.left = `${event.pageX - tooltipRect.width / 2}px`;
+  tooltip.style.top = `${event.pageY - tooltipRect.height - 10}px`;
+}
+
+// Load and render map
+async function loadMap() {
+  try {
+    // Fetch data
+    const data = await d3.json(config.dataUrl);
+
+    // Convert TopoJSON to GeoJSON
     const regions = topojson.feature(data, data.objects.regions);
 
-    const projection = d3.geoMercator().fitSize([width, height], regions);
+    // Create projection
+    const projection = d3.geoMercator()
+      .fitSize([config.width, config.height], regions);
+
+    // Create path generator
     const pathGenerator = d3.geoPath().projection(projection);
 
-
-    svg.selectAll('path').data(regions.features)
-      .enter().append('path')
+    // Draw regions
+    svg.selectAll('path')
+      .data(regions.features)
+      .join('path')
       .attr('class', 'region')
       .attr('d', pathGenerator)
-      .on('mouseover', function (d, i) {
-        text.text(d.properties['name:ar'])
-      })
-      .on('mouseout', function (d, i) {
-        text.text("")
+      .attr('aria-label', d => d.properties['name:en'])
+      .on('mouseover', (event, d) => showTooltip(event, d))
+      .on('mousemove', moveTooltip)
+      .on('mouseout', hideTooltip)
+      .on('click', (event, d) => {
+        console.log('Region clicked:', d.properties);
       });
-  });
+
+    // Clear loading message and append SVG
+    mapContainer.innerHTML = '';
+    mapContainer.appendChild(svg.node());
+
+    // Log success
+    console.log('Morocco map loaded successfully!');
+    console.log(`Loaded ${regions.features.length} regions`);
+
+  } catch (error) {
+    console.error('Error loading map:', error);
+
+    mapContainer.innerHTML = `
+      <div class="error-message">
+        <strong>Error loading map data</strong><br>
+        ${error.message || 'Failed to fetch map data. Please try again later.'}
+      </div>
+    `;
+  }
+}
+
+// Initialize map
+loadMap();

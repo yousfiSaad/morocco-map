@@ -1,24 +1,57 @@
 {
   "name": "morocco-map",
   "version": "1.2.1",
-  "description": "TopoJSON files for moroccan regions",
-  "scripts": {
-    "example": "npx http-server -c-0"
-  },
+  "description": "TopoJSON and GeoJSON files for Moroccan regions and provinces with ISO 3166-2 compliant IDs. Perfect for data visualization and interactive maps.",
   "main": "data/regions.json",
+  "types": "index.d.ts",
+  "files": [
+    "data/",
+    "img/",
+    "index.d.ts",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "example": "npx http-server -c-0",
+    "test": "echo \"No tests specified yet\" && exit 0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yousfiSaad/morocco-map.git"
   },
   "keywords": [
     "topojson",
+    "geojson",
     "morocco",
-    "map"
+    "map",
+    "maps",
+    "maroc",
+    "regions",
+    "provinces",
+    "geography",
+    "geo",
+    "data-visualization",
+    "d3",
+    "d3js",
+    "visualization",
+    "africa",
+    "north-africa",
+    "maghreb",
+    "cartography",
+    "gis",
+    "spatial-data",
+    "iso-3166"
   ],
-  "author": "yousfi saad",
+  "author": {
+    "name": "Yousfi Saad",
+    "url": "https://github.com/yousfiSaad"
+  },
   "license": "ODbL-1.0",
   "bugs": {
     "url": "https://github.com/yousfiSaad/morocco-map/issues"
   },
-  "homepage": "https://github.com/yousfiSaad/morocco-map#readme"
+  "homepage": "https://github.com/yousfiSaad/morocco-map#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
